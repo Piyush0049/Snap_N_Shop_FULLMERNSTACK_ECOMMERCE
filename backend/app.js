@@ -22,4 +22,7 @@ app.use("/api/v1", order)
 app.use("/api/v1", product)
 app.use("/auth", user)
 app.use("/api/v1", payment)
+app.get("/", (req,res)=>{
+    res.send("The server is working")
+})
 module.exports = app;
