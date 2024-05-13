@@ -14,10 +14,11 @@ const path = require("path");
 
 
 app.use(cors({
-    origin : "https://main--golden-custard-15c962.netlify.app",
-    methods : ["GET", "POST", "PATCH", "DELETE"],
-    credentials : true
+    origin: "*",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    credentials: true
 }));
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(bodyparser.urlencoded({extended : true}))
