@@ -5,7 +5,7 @@ const cloudinary = require("cloudinary")
 const connecttodatabase = require("./config/database");
 dotenv.config({path:"backend/config/config.env"})
 app.use(cors({
-    origin : "https://ecommerce-frontend-3jo6.vercel.app",
+    origin : "*",
     methods : ["GET", "POST", "PATCH", "DELETE", "PUT"],
     credentials : true
 }));
