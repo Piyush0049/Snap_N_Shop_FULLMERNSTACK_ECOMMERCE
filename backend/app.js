@@ -9,11 +9,7 @@ const payment = require("./routes/paymentroute")
 const fileupload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
 const app = express();
-const cors = require("cors");
 const path = require("path");
-
-
-app.use(cors());
 
 app.use(express.json())
 app.use(cookieParser())
