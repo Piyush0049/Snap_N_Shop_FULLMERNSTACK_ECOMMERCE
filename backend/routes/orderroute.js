@@ -3,7 +3,7 @@ const isauthenticated = require("../middleware/auth")
 const authorizeroles = require("../middleware/authwork")
 const {createorder, getsingleorder, getallmyorders, everyorder, updateorder, deleteorder} = require("../controller/ordercontroller");
 const router = express.Router();
-router.route("/order/create").post(createorder);
+router.route("/order/create").post(isauthenticated,createorder);
 router.route("/getoneorder/:id").get(isauthenticated, authorizeroles, getsingleorder);
 router.route("/getallmyorders").get(isauthenticated, getallmyorders);
 router.route("/allorders").get(isauthenticated, authorizeroles, everyorder);
