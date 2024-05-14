@@ -5,6 +5,7 @@ const cloudinary = require("cloudinary")
 const connecttodatabase = require("./config/database");
 dotenv.config({path:"backend/config/config.env"})
 app.use(cors({
+    origin : "https://main--golden-custard-15c962.netlify.app",
     methods : ["GET", "POST", "PATCH", "DELETE", "PUT"],
     credentials : true
 }));
