@@ -9,7 +9,13 @@ app.use(cors({
     methods : ["GET", "POST", "PATCH", "DELETE", "PUT"],
     credentials : true
 }));
-
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://main--golden-custard-15c962.netlify.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, PUT');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
+});
 connecttodatabase();
 cloudinary.config({
     cloud_name : process.env.CLOUDINARY_NAME,
