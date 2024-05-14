@@ -145,9 +145,9 @@ exports.resetpassword = async (req, res, next) => {
 }
 
 exports.getuserprofile = async(req, res, next) => {
+    try{
     const {token} = req.cookies;
     const decoded = jwt.verify(token, SEC_KEY);
-    try{
         const user = await User.findById(decoded._id);
         res.status(200).json({success : true, message : "Here are the user details", user}) 
     }
