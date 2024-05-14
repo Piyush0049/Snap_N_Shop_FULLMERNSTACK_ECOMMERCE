@@ -18,6 +18,13 @@ app.use(cors({
     credentials : true
 }));
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://main--golden-custard-15c962.netlify.app");
+  res.setHeader("Access-Control-Allow-Methods", "GET", "POST", "PATCH", "DELETE", "PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(bodyparser.urlencoded({extended : true}))
@@ -26,6 +33,8 @@ app.use("/api/v1", order)
 app.use("/api/v1", product)
 app.use("/auth", user)
 app.use("/api/v1", payment)
+
+
 
 app.get("/", (req,res)=>{
     res.send("The server is working")
