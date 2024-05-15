@@ -19,7 +19,7 @@ exports.createuser = async (req, res, next) => {
             username, email, avatar, work ,password : hashedPassword
         });
         const authtoken = jwt.sign({_id: newUser._id }, SEC_KEY)
-        Cookies.set("token", authtoken, { maxage :  1800000 })
+        Cookies.set("token", authtoken, {maxAge: 1800000, httpOnly: true, sameSite: "None", secure: true})
         return res.status(200).json({ success: true, user: newUser, authtoken });
     } catch (error) {
         console.log(error)
@@ -39,7 +39,7 @@ exports.userlogin = async (req, res, next) => {
             return res.status(400).json({ success: false, message: "Incorrect password" });
         }
         const authtoken = jwt.sign({ _id: user._id }, SEC_KEY);
-        res.cookie("token", authtoken, { maxAge: 1800000 });
+        res.cookie("token", authtoken, {maxAge: 1800000, httpOnly: true, sameSite: "None", secure: true});
         return res.status(200).json({ success: true, message: "Successfully logged in", user, authtoken });
     } catch (error) {
         console.log(error);
@@ -54,7 +54,7 @@ exports.userlogout = async (req, res, next) => {
             return res.status(400).json({ success: false, message: "Login with an account first" });
         }
         // Expire the token by setting its expiration time to a past date
-        res.cookie("token", "", { expires: new Date(0) });
+        res.cookie("token", "", { expires: new Date(0), httpOnly: true, sameSite: "None", secure: true });
         
         return res.status(200).json({ success: true, message: "Logout successful" });
     } catch (error) {
@@ -74,7 +74,7 @@ exports.userdelete = async(req, res, next) => {
             return res.status(400).json({success : false, message : "User does not exist"})
         }
         await User.findByIdAndDelete(decoded._id);
-        res.cookie("token", "", { expires: new Date(0) });
+        res.cookie("token", "", { expires: new Date(0), httpOnly: true, sameSite: "None", secure: true });
         return res.status(200).json({success : true, message : "User id deleted successfully"})
     }
     catch(error){
@@ -136,7 +136,7 @@ exports.resetpassword = async (req, res, next) => {
         user.resetpasswordexpire = undefined;
         const authtoken = jwt.sign({ _id: user._id }, SEC_KEY);
         const {password} = user;
-        res.cookie("token", authtoken, { maxAge: 900000 });
+        res.cookie("token", authtoken, { maxAge: 900000, httpOnly: true, sameSite: "None", secure: true });
         return res.status(200).json({ success: true, message: "Password changed successfully", user });
     } catch (error) {
         console.log(error);
@@ -180,7 +180,7 @@ exports.updatepassword = async(req, res, next) => {
             { $set: { password: newpass } } // Update: Set the new password
         );
         const authtoken = jwt.sign({ _id: user._id }, SEC_KEY);
-        res.cookie("token", authtoken, { maxAge: 900000 });
+        res.cookie("token", authtoken, { maxAge: 900000, httpOnly: true, sameSite: "None", secure: true });
         return res.status(200).json({ success: true, message: "Password changed successfully", user });
     }
     catch(error){
