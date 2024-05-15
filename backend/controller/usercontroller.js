@@ -89,7 +89,7 @@ exports.forgotpassword = async (req, res, next) => {
     }
     const resettoken = user.getresetpassword();
     await user.save({validateBeforeSave : false});
-    const resetpassurl = `${process.env.FRONTEND_PORT}/auth/password/reset/${resettoken}`;
+    const resetpassurl = `https://main--golden-custard-15c962.netlify.app/auth/password/reset/${resettoken}`;
     const message = `Your password reset token is : ${resetpassurl} \n\n
     Please ignore if this is a mistake.`;
 
