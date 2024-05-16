@@ -13,7 +13,7 @@ const app = express();
 const path = require("path");
 
 app.use(cors({
-    origin : "*",
+    origin : "https://main--golden-custard-15c962.netlify.app",
     methods : ["GET", "POST", "PATCH", "DELETE", "PUT"],
     allowedHeaders: ['Content-Type'],
     credentials : true
