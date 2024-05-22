@@ -13,7 +13,7 @@ const app = express();
 const path = require("path");
 
 app.use(cors({
-    origin : ["https://main--dulcet-conkies-e3a8f0.netlify.app", "http://localhost:3000"],
+    origin : ["https://main--dulcet-conkies-e3a8f0.netlify.app", "http://localhost:3000", "https://ecommerce-frontend-web.vercel.app"],
     methods : ["GET", "POST", "PATCH", "DELETE", "PUT"],
     allowedHeaders: ['Content-Type'],
     credentials : true
